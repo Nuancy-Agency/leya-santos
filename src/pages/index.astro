@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Sobre from "../components/Sobre.astro";
+import Especialidades from "../components/Especialidades.astro";
+import Servicos from "../components/Servicos.astro";
+import Galeria from "../components/Galeria.astro";
+import Depoimentos from "../components/Depoimentos.astro";
+import Podcast from "../components/Podcast.astro";
+import Localizacao from "../components/Localizacao.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloating from "../components/WhatsAppFloating.astro";
+---
+
+<Layout
+  title="Leya Santos Hair — Colorista e Cabeleireira em Lisboa"
+  description="Hairstylist, colorista e especialista em morena iluminada em Lisboa. Coloração, madeixas, balayage, tratamentos e penteados no Solo Concept. Agende pelo WhatsApp."
+>
+  <Header />
+  <main id="conteudo">
+    <Hero />
+    <Sobre />
+    <Especialidades />
+    <Servicos />
+    <Galeria />
+    <Depoimentos />
+    <Podcast />
+    <Localizacao />
+    <CtaFinal />
+  </main>
+  <Footer />
+  <WhatsAppFloating />
+</Layout>

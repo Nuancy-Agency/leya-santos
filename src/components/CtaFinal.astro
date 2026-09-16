@@ -1,0 +1,71 @@
+---
+import { contact } from "../data/contact";
+
+const canais = [
+  {
+    label: "WhatsApp ou telefone",
+    value: contact.whatsappDisplay,
+    href: contact.whatsapp,
+    secondaryHref: contact.telefone,
+    secondaryLabel: "ligar",
+  },
+  {
+    label: "Instagram",
+    value: contact.instagramHandle,
+    href: contact.instagram,
+  },
+  {
+    label: "E-mail",
+    value: contact.email,
+    href: `mailto:${contact.email}`,
+  },
+];
+---
+
+<section id="contato" class="scroll-mt-20 py-20 md:py-28">
+  <div class="mx-auto max-w-4xl px-5 text-center">
+    <div data-reveal>
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Vamos marcar?</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        Permita-se. Você é o maior projeto da sua vida.
+      </h2>
+      <p class="mt-4 text-ink/70">Escolha o canal que preferir — resposta rápida, sempre.</p>
+    </div>
+
+    <div data-reveal class="mt-10">
+      <a
+        href={contact.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-full bg-ink px-8 py-4 text-lg font-semibold text-cream transition-colors hover:bg-terracotta"
+      >
+        Agendar agora no WhatsApp
+      </a>
+    </div>
+
+    <ul data-reveal class="mx-auto mt-12 grid max-w-3xl gap-4 text-left sm:grid-cols-3">
+      {
+        canais.map((canal) => (
+          <li class="rounded-xl border border-ink/10 px-5 py-4 transition-colors hover:border-copper">
+            <a
+              href={canal.href}
+              target={canal.href.startsWith("http") ? "_blank" : undefined}
+              rel={canal.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="block"
+            >
+              <span class="block text-xs font-semibold tracking-wide text-ink/70 uppercase">{canal.label}</span>
+              <span class="mt-1 block truncate font-medium text-ink" translate="no">
+                {canal.value}
+              </span>
+            </a>
+            {"secondaryHref" in canal && canal.secondaryHref && (
+              <a href={canal.secondaryHref} class="mt-1 inline-block text-sm text-terracotta underline underline-offset-2">
+                {canal.secondaryLabel}
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

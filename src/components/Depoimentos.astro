@@ -1,0 +1,26 @@
+---
+import { depoimentos } from "../data/contact";
+---
+
+<section id="depoimentos" class="scroll-mt-20 bg-cream-soft/60 py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Depoimentos</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">Quem já passou pelas mãos da Leya</h2>
+    </div>
+
+    <ul data-reveal class="mt-12 grid gap-6 sm:grid-cols-2">
+      {
+        depoimentos.map((d) => (
+          <li class="rounded-2xl border border-ink/10 bg-cream p-6">
+            <p class="font-display text-lg leading-relaxed text-ink/90">&#8220;{d.texto}&#8221;</p>
+            <p class="mt-4 text-sm font-medium text-ink/70" translate="no">
+              {d.autor}
+              {"contexto" in d && d.contexto ? ` — ${d.contexto}` : ""}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

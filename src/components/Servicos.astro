@@ -1,0 +1,50 @@
+---
+import { servicos, contact } from "../data/contact";
+---
+
+<section id="servicos" class="scroll-mt-20 bg-cream-soft/60 py-20 md:py-28">
+  <div class="mx-auto max-w-4xl px-5">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Serviços</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">Preços e duração, sem surpresas</h2>
+      <p class="mt-4 text-ink/70">Valores praticados no atendimento no Solo Concept, Lisboa.</p>
+    </div>
+
+    <ul data-reveal class="mt-12 divide-y divide-ink/10 rounded-2xl border border-ink/10 bg-cream">
+      {
+        servicos.map((servico) => (
+          <li class="flex flex-col gap-1 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8">
+            <div class="min-w-0">
+              <p class="font-display text-lg font-semibold text-ink">{servico.nome}</p>
+              {"descricao" in servico && servico.descricao ? (
+                <p class="text-sm text-ink/70">{servico.descricao}</p>
+              ) : null}
+            </div>
+            <div class="flex shrink-0 items-baseline gap-4 sm:flex-col sm:items-end sm:gap-0.5">
+              <span class="text-sm text-ink/70">{servico.duracao}</span>
+              <span class="font-display text-lg font-semibold text-terracotta" style="font-variant-numeric: tabular-nums;">
+                {servico.preco}
+              </span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p data-reveal class="mt-8 text-center text-sm text-ink/70">
+      Prefere agendar direto?{" "}
+      <a href={contact.linkSoloBooking} target="_blank" rel="noopener noreferrer" class="font-medium text-terracotta underline underline-offset-2">
+        Marque pelo Solo Booking
+      </a>{" "}
+      ou, mais rápido, chame no{" "}
+      <a
+        href={contact.whatsappFor("Olá Leya! Vi a tabela de preços no site e queria pedir um orçamento.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-terracotta underline underline-offset-2"
+      >
+        WhatsApp
+      </a>.
+    </p>
+  </div>
+</section>

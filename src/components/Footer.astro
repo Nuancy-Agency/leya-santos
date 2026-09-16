@@ -1,0 +1,30 @@
+---
+import { contact } from "../data/contact";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink/10 bg-ink py-10 text-cream/80">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 text-center sm:flex-row sm:justify-between sm:text-left">
+    <div>
+      <p class="font-display text-lg font-semibold text-cream" translate="no">Leya Santos</p>
+      <p class="mt-1 text-sm">{contact.endereco}</p>
+    </div>
+
+    <div class="flex items-center gap-5">
+      <a href={contact.instagram} target="_blank" rel="noopener noreferrer" class="text-sm font-medium hover:text-copper">
+        Instagram
+      </a>
+      <a href={contact.facebook} target="_blank" rel="noopener noreferrer" class="text-sm font-medium hover:text-copper">
+        Facebook
+      </a>
+      <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="text-sm font-medium hover:text-copper">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <p class="mt-8 text-center text-xs text-cream/50">
+    © {year} Leya Santos Hair. Todos os direitos reservados.
+  </p>
+</footer>

@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import leyaHero from "../assets/portrait/leya-hero.png";
+import { contact } from "../data/contact";
+---
+
+<section id="topo" class="relative overflow-hidden">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-16 pt-10 md:grid-cols-2 md:gap-16 md:pb-24 md:pt-16">
+    <div data-reveal class="order-2 md:order-1">
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-1.5 text-xs font-semibold tracking-wide text-cream">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-copper" aria-hidden="true">
+          <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 0 0 1.745-.723 3.066 3.066 0 0 1 3.976 0 3.066 3.066 0 0 0 1.745.723 3.066 3.066 0 0 1 2.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 0 1 0 3.976 3.066 3.066 0 0 0-.723 1.745 3.066 3.066 0 0 1-2.812 2.812 3.066 3.066 0 0 0-1.745.723 3.066 3.066 0 0 1-3.976 0 3.066 3.066 0 0 0-1.745-.723 3.066 3.066 0 0 1-2.812-2.812 3.066 3.066 0 0 0-.723-1.745 3.066 3.066 0 0 1 0-3.976 3.066 3.066 0 0 0 .723-1.745 3.066 3.066 0 0 1 2.812-2.812Zm7.44 5.252a1 1 0 0 0-1.414-1.414L9 10.586 7.707 9.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd" />
+        </svg>
+        Perfil verificado no Instagram
+      </p>
+
+      <h1 class="font-display text-4xl leading-[1.08] font-semibold text-ink sm:text-5xl lg:text-6xl">
+        Elegância que não precisa de exageros.
+      </h1>
+
+      <p class="mt-6 max-w-lg text-lg text-ink/80">
+        Trazendo mais cor e realce para a beleza de cada mulher. Hairstylist,
+        colorista e especialista em morena iluminada — atendendo em Lisboa,
+        no Solo Concept.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href={contact.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-ink px-7 py-3.5 text-base font-semibold text-cream transition-colors hover:bg-terracotta"
+        >
+          Agendar no WhatsApp
+        </a>
+        <a
+          href={contact.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full border border-ink/20 px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:border-copper hover:text-terracotta"
+        >
+          Ver no Instagram
+        </a>
+      </div>
+    </div>
+
+    <div data-reveal class="relative order-1 mx-auto w-full max-w-sm md:order-2 md:max-w-none">
+      <div class="aspect-square overflow-hidden rounded-[2rem] border border-ink/10 shadow-xl shadow-ink/10">
+        <Image
+          src={leyaHero}
+          alt="Retrato de Leya Santos, cabeleireira e colorista, sorrindo em ambiente do salão Solo Concept em Lisboa"
+          widths={[400, 600, 800]}
+          sizes="(min-width: 768px) 480px, 90vw"
+          class="h-full w-full object-cover"
+          style="transform: scale(1.3); transform-origin: 66% 22%;"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>

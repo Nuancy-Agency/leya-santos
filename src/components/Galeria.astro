@@ -1,0 +1,130 @@
+---
+import { Image } from "astro:assets";
+
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/gallery/*.{jpg,jpeg,png,webp}",
+  { eager: true },
+);
+
+const images = Object.values(modules)
+  .map((mod) => mod.default)
+  .sort((a, b) => a.src.localeCompare(b.src));
+---
+
+<section id="galeria" class="scroll-mt-20 py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5">
+    <div data-reveal class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Galeria</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">Transformações reais</h2>
+      <p class="mt-4 text-ink/70">Loiro, morena iluminada e ruivo — trabalhos feitos em Lisboa.</p>
+    </div>
+
+    <div
+      x-data="{ open: false, index: 0, total: 0, lastFocused: null }"
+      x-init={`total = ${images.length}`}
+      x-on:keydown.escape.window="open = false"
+      x-on:keydown.arrow-right.window="if (open) index = (index + 1) % total"
+      x-on:keydown.arrow-left.window="if (open) index = (index - 1 + total) % total"
+      x-on:keydown.tab.window="
+        if (!open) return;
+        $event.preventDefault();
+        const els = [$refs.closeBtn, $refs.prevBtn, $refs.nextBtn];
+        const i = els.indexOf(document.activeElement);
+        const dir = $event.shiftKey ? -1 : 1;
+        els[(i + dir + els.length) % els.length].focus();
+      "
+      x-effect="
+        if (open) { $nextTick(() => $refs.closeBtn && $refs.closeBtn.focus()) }
+        else if (lastFocused) { lastFocused.focus() }
+      "
+      class="mt-12"
+    >
+      <ul data-reveal class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+        {
+          images.map((img, i) => (
+            <li>
+              <button
+                type="button"
+                x-on:click={`lastFocused = $event.currentTarget; open = true; index = ${i}`}
+                class="group block w-full overflow-hidden rounded-xl border border-ink/10"
+                aria-label={`Ampliar foto ${i + 1} de ${images.length} da galeria de transformações`}
+              >
+                <Image
+                  src={img}
+                  alt={`Transformação de cor realizada por Leya Santos — foto ${i + 1}`}
+                  widths={[240, 360, 480]}
+                  sizes="(min-width: 768px) 240px, 45vw"
+                  class="aspect-square h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div
+        x-show="open"
+        x-cloak
+        x-transition.opacity
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-ink/90 p-4 [overscroll-behavior:contain]"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Foto ampliada da galeria"
+      >
+        <button
+          type="button"
+          x-ref="closeBtn"
+          x-on:click="open = false"
+          class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-cream/10 text-cream hover:bg-cream/20"
+          aria-label="Fechar"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          x-ref="prevBtn"
+          x-on:click="index = (index - 1 + total) % total"
+          class="absolute left-2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-cream/10 text-cream hover:bg-cream/20 sm:left-6"
+          aria-label="Foto anterior"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div class="max-h-[85vh] max-w-3xl" x-on:click.outside="open = false">
+          {
+            images.map((img, i) => (
+              <template x-if={`index === ${i}`}>
+                <Image
+                  src={img}
+                  alt={`Transformação de cor realizada por Leya Santos — foto ${i + 1} ampliada`}
+                  widths={[640, 960]}
+                  sizes="90vw"
+                  class="max-h-[85vh] w-auto rounded-lg object-contain"
+                  loading="eager"
+                />
+              </template>
+            ))
+          }
+        </div>
+
+        <button
+          type="button"
+          x-ref="nextBtn"
+          x-on:click="index = (index + 1) % total"
+          class="absolute right-2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-cream/10 text-cream hover:bg-cream/20 sm:right-6"
+          aria-label="Próxima foto"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

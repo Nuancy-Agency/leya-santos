@@ -1,0 +1,51 @@
+---
+import { contact } from "../data/contact";
+
+// URL de embed derivada do endereço real confirmado pela cliente (sem chave de API,
+// usando o modo de embed público do Google Maps por endereço).
+const mapsEmbedSrc =
+  "https://www.google.com/maps?q=R.+S%C3%A3o+Tom%C3%A1s+de+Aquino+6B,+1600-203+Lisboa,+Portugal&output=embed";
+---
+
+<section id="localizacao" class="scroll-mt-20 bg-cream-soft/60 py-20 md:py-28">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-2 md:gap-16">
+    <div data-reveal>
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Localização</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        Atendimento em Lisboa, no Solo Concept
+      </h2>
+
+      <dl class="mt-8 space-y-6">
+        <div>
+          <dt class="text-sm font-semibold text-ink/70">Endereço</dt>
+          <dd class="mt-1 text-lg text-ink">
+            <a href={contact.enderecoMapsUrl} target="_blank" rel="noopener noreferrer" class="hover:text-terracotta">
+              {contact.endereco}
+            </a>
+          </dd>
+        </div>
+        <div>
+          <dt class="text-sm font-semibold text-ink/70">Horário de funcionamento</dt>
+          <dd class="mt-1 text-lg text-ink" style="font-variant-numeric: tabular-nums;">{contact.horario}</dd>
+        </div>
+      </dl>
+
+      <p class="mt-8 text-ink/80">
+        Solo Concept é um coworking de beleza em Lisboa que reúne cabeleireiros,
+        coloristas, manicures e outros profissionais especializados num
+        mesmo espaço.
+      </p>
+    </div>
+
+    <div data-reveal class="overflow-hidden rounded-2xl border border-ink/10 shadow-lg shadow-ink/10">
+      <iframe
+        title="Mapa com a localização de Leya Santos Hair, Rua São Tomás de Aquino 6B, Lisboa"
+        src={mapsEmbedSrc}
+        class="h-80 w-full md:h-full md:min-h-[360px]"
+        style="border:0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>

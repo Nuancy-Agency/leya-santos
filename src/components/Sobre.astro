@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import leyaSobre from "../assets/portrait/leya-sobre.png";
+---
+
+<section id="sobre" class="scroll-mt-20 bg-cream-soft/60 py-20 md:py-28">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2 md:gap-16">
+    <div data-reveal class="order-2 md:order-1">
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Sobre</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        Cuidado, técnica e excelência.
+      </h2>
+
+      <blockquote class="mt-6 space-y-4 font-display text-xl leading-relaxed text-ink/90 italic">
+        <p>
+          &#8220;Um cabelo bonito é aquele que transmite leveza, brilho e
+          naturalidade. Cada detalhe foi pensado para valorizar a beleza da
+          minha cliente, respeitando seu estilo e realçando sua identidade.
+        </p>
+        <p>
+          Meu compromisso vai além da cor ou do corte: é entregar um
+          resultado sofisticado, saudável e personalizado, para que você se
+          sinta ainda mais confiante ao se olhar no espelho.
+        </p>
+        <p>Porque cabelo bonito não é tendência. É cuidado, técnica e excelência.&#8221;</p>
+      </blockquote>
+
+      <p class="mt-6 text-sm text-ink/70">
+        — Leya Santos, no Instagram{" "}
+        <span translate="no">@leyasantoshair</span>
+      </p>
+
+      <p class="mt-8 text-ink/80">
+        Atendimento em Lisboa, no <strong class="font-semibold text-ink">Solo Concept</strong>{" "}
+        — um coworking de beleza dedicado a profissionais de cabelo, unhas e
+        estética, na Rua São Tomás de Aquino, Laranjeiras.
+      </p>
+    </div>
+
+    <div data-reveal class="order-1 md:order-2">
+      <div class="mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-ink/10 shadow-lg shadow-ink/10 md:max-w-none">
+        <Image
+          src={leyaSobre}
+          alt="Leya Santos em foto pessoal, cabelo com balayage, sorrindo"
+          widths={[360, 520, 700]}
+          sizes="(min-width: 768px) 480px, 85vw"
+          class="h-auto w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>

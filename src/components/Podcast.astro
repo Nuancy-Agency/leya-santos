@@ -1,0 +1,41 @@
+---
+import { contact } from "../data/contact";
+import podcastPoster from "../assets/video/podcast-poster.jpg";
+---
+
+<section id="podcast" class="scroll-mt-20 py-20 md:py-28">
+  <div class="mx-auto max-w-3xl px-5 text-center">
+    <div data-reveal>
+      <p class="mb-3 text-sm font-semibold tracking-widest text-terracotta uppercase">Conheça a Leya</p>
+      <h2 class="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        Um pouco da história por trás do trabalho
+      </h2>
+      <p class="mt-4 text-ink/70">Trecho do podcast Solo Talks, com Leya Santos.</p>
+    </div>
+
+    <div data-reveal class="mx-auto mt-10 overflow-hidden rounded-2xl border border-ink/10 bg-ink shadow-lg shadow-ink/10">
+      <video
+        controls
+        preload="metadata"
+        playsinline
+        poster={podcastPoster.src}
+        class="aspect-video w-full"
+        aria-label="Trecho do podcast Solo Talks com Leya Santos"
+      >
+        <source src="/video/podcast-leya.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo em HTML5.
+      </video>
+    </div>
+
+    <p data-reveal class="mt-6 text-sm text-ink/70">
+      <a
+        href={contact.videoPodcastYoutube}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-terracotta underline underline-offset-2"
+      >
+        Assistir à entrevista completa no YouTube
+      </a>
+    </p>
+  </div>
+</section>
